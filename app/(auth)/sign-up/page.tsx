@@ -1,12 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import Image from "next/image";
+import GoogleBtn from "@/components/authButtons/GoogleBtn";
+import GithubBtn from "@/components/authButtons/GithubBtn";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/utils/authOptions";
+import { redirect } from "next/navigation";
 
-import { Github } from "lucide-react";
-import GoogleIcon from "@/public/google.svg";
+const page = async () => {
+  const session = await getServerSession(authOptions)
 
-const page = () => {
+  if(session){
+    return redirect("/home")
+  }
   return (
     <div className="mt-24 rounded bg-black/80 py-10 px-6 md:mt-0 md:max-w-sm md:px-14">
       <form>
@@ -30,23 +36,14 @@ const page = () => {
 
       <div className="text-gray-500 text-sm mt-2">
         Already have an Account{" "}
-        <Link className="text-white hover:underline" href="/login">
+        <Link className="text-white hover:underline pl-2" href="/login">
           Log in now!
         </Link>
       </div>
 
       <div className="flex w-full justify-center items-center gap-x-3 mt-6">
-        <Button variant="outline" size="icon">
-          <Image
-            priority
-            src={GoogleIcon}
-            alt={"Google Log in button"}
-            className="w-6 h-6"
-          />
-        </Button>
-        <Button variant="outline" size="icon">
-          <Github className="w-4 h-4" />
-        </Button>
+        <GoogleBtn/>
+        <GithubBtn/>
       </div>
     </div>
   );
