@@ -1,7 +1,12 @@
+import { getServerSession } from "next-auth"
+import { authOptions } from "../utils/authOptions"
 
-const page = () => {
+const page = async () => {
+  const session = await getServerSession(authOptions)
   return (
-    <div>auth user</div>
+    <section>
+      Hello
+    </section>
   )
 }
 
