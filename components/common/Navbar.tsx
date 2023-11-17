@@ -28,7 +28,7 @@ const Navbar = () => {
         <Link href="/home" className="w-32">
           <Image src={Logo} alt="Netflix Logo" priority />
         </Link>
-        <ul className="lg:flex gap-x-4 ml-14 hidden">
+        <ul className="lg:flex items-center gap-x-4 ml-14 hidden">
           {links.map((link, index) => (
             <div key={index}>
               {pathName === link.href ? (
