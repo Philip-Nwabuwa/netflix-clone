@@ -28,4 +28,7 @@ export const authOptions = {
         from: process.env.EMAIL_FROM
       }),
   ],
+  pages: {
+    signIn: '/login',
+  },
 } satisfies NextAuthOptions;
